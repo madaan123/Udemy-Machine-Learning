@@ -45,4 +45,13 @@ split=sample.split(dataset$Purchased,SplitRatio = 0.8)
 training_set=subset(dataset,split==TRUE)
 test_set=subset(dataset,split==FALSE)
 
-
+"
+machine learning models work on eucledian distances and we need to scale it as 
+it helps the algorithm to converge must faster
+Now we are going to learn how to handle scaling in machine learning that 
+helps us to check whether large data entries do not overshadow 
+small valued entries
+we have to include only those columns for scaling who have numeric values in dataset
+"
+training_set[,2:3]=scale(training_set[,2:3])
+test_set[,2:3]=scale(test_set[,2:3])
