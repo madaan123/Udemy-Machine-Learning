@@ -22,6 +22,11 @@ X_train, X_test, y_train, y_test= train_test_split(X,y, test_size=0.3, random_st
 
 # Feature Scaling
 '''
+machine learning models work on eucledian distances and we need to scale it as it helps 
+the algorithm to converge must faster
+Now we are going to learn how to handle scaling in machine learning that helps us to 
+check whether large data entries do not overshadow small valued entries
+
 we will recompute X_train because we want to scale it and we will transform it and just
 transform test set because its already fitted to training set
 '''
