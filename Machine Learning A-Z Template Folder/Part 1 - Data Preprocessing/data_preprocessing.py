@@ -45,4 +45,19 @@ different dataset to test the performance of our machine learning model
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test= train_test_split(X,y, test_size=0.3, random_state=0)
 
+'''
+machine learning models work on eucledian distances and we need to scale it as it helps 
+the algorithm to converge must faster
+Now we are going to learn how to handle scaling in machine learning that helps us to 
+check whether large data entries do not overshadow small valued entries
+'''
+from sklearn.preprocessing import StandardScaler
+sc_X=StandardScaler()
+'''
+we will recompute X_train because we want to scale it and we will transform it and just
+transform test set because its already fitted to training set
+'''
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
+ 
 
