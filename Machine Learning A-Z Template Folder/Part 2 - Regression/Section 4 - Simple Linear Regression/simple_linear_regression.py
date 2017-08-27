@@ -47,13 +47,37 @@ sc_y = StandardScaler()
 y_train = sc_y.fit_transform(y_train)
 """
 
-''' Fitting simple linear regression to the training set '''
+''' Fitting simple linear regression to the training set 
+    train the regressor on training set
+'''
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()  # Creating object of linear regression class
 # fit the regressor object to our training set
 regressor.fit(X_train,y_train)
 
+# predicting the test set results
+y_pred=regressor.predict(X_test)
 
+#Visualizing the training set results
+'''
+we will plot a graph that will show the observation points and we will also plot
+linear regresion line
+we will plot a scatter graph that shows salaries in red colour and regression line in 
+blue colour.
+'''
+plt.scatter(X_train,y_train, color='red')   # plot the salaries of the employees
+plt.plot(X_train,regressor.predict(X_train), color='blue')  # plot the regression line
+plt.title('salary Vs Experience(Training Set)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary')
+plt.show()
 
+#Visualizing the test set results
+plt.scatter(X_test,y_test, color='red')   # plot the salaries of the employees
+plt.plot(X_train,regressor.predict(X_train), color='blue')  # plot the regression line
+plt.title('salary Vs Experience(Test Set)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary')
+plt.show()
 
 
