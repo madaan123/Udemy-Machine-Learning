@@ -39,3 +39,7 @@ it shows the number of stars higher the number more is the dependency of
 dependent column on independent set and lesser the p value more is independent
 variable statistically significant
 "
+#Predicting our test set results
+y_pred=predict(regressor, newdata = test_set)
+
+
