@@ -42,4 +42,34 @@ variable statistically significant
 #Predicting our test set results
 y_pred=predict(regressor, newdata = test_set)
 
+#visualizing the results of training and test set
+#install.packages('ggplot2')
+library(ggplot2)
+"
+Now we have to plot the datapoints and linear regression line
+geom_point is used to scatter plot all our obervations points of training set
+aes-aesthetic function specifies the x and y variables of the plot
+geom_line is used to plot the regression line
+xlab and ylab for labelling x and y coordinates
+"
+
+ggplot() +
+  geom_point(aes(x = training_set$YearsExperience, y = training_set$Salary),
+             colour= 'red' ) +
+  geom_line(aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+            colour='blue') +
+  ggtitle('salary vs Experience(Training Set)') +
+  xlab('Years of experience') +     
+  ylab('salary')
+
+
+ggplot() +
+  geom_point(aes(x = test_set$YearsExperience, y = test_set$Salary),
+             colour= 'red' ) +
+  geom_line(aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+            colour='blue') +
+  ggtitle('salary vs Experience(Test Set)') +
+  xlab('Years of experience') +     
+  ylab('salary')
+
 
