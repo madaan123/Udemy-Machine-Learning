@@ -73,8 +73,55 @@ regressor.fit(X_train,y_train)
 # predicting the test set results
 y_pred=regressor.predict(X_test)
 
+#Building the optimal model using backward elimination
+import statsmodels.formula.api as sm
+'''
+we are going to add a column of ones in our matrix of features in this matrix
+that will correspond to x0=1 as this library does not considers the constant b0
+otherwise our library will consider our equation as y=b1*x1+... + Bn*Xn
+append function will add a array of ones in the matrix by using ones function
+at the beginning of the matrix X
+'''
+X=np.append(arr=np.ones((50,1)).astype(int) , values = X , axis=1)  
 
+'''
+Now we are going to implement backward elimination that considers only those columns or
+independent variables that are statiscally more significant
+we include all the columns and the remove the indignificant columns one by one
+'''
+
+X_opt=X[:, [0,1,2,3,4,5]]
+# we are going to create object for the OLS-ordinary least squares class
+#we are performing step 2 of Backward elimination-fit the model with all possible predictors
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+'''
+Now we want to remove those independent variables whose p values are greater than significance level
+lower the p value more significant is our independent variable and we will check p values of
+all the columns by calling summary function and then remove the independent variable with highest
+p value and then fit the model with remaining variables and then and proceed with same steps 
+until we get all p values less than significance level
+'''
+regressor_OLS.summary()
  
+X_opt=X[:, [0,1,3,4,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+X_opt=X[:, [0,3,4,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+X_opt=X[:, [0,3,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+X_opt=X[:, [0,3]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+'''
+Now we have got our optimal table which decides the value of our profit by backward elimination 
+'''
 
 
 
