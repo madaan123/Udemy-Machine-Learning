@@ -123,6 +123,8 @@ regressor_OLS.summary()
 Now we have got our optimal table which decides the value of our profit by backward elimination 
 '''
 
+y_pred=regressor.predict(X_test)
+
 
 
 
