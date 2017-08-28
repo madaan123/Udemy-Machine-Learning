@@ -62,3 +62,36 @@ R also handles the dummy trap and skips one dummy row
 "
 #Predicting our test set results
 y_pred=predict(regressor, newdata = test_set)
+
+"
+Now we are going to implement backward elimination that considers only those columns or
+independent variables that are statiscally more significant
+we include all the columns and the remove the indignificant columns one by one
+"
+#Build the optimal model using backward elimination
+regressor= lm(formula= Profit ~ R.D.Spend + Administration + Marketing.Spend + State,
+              data=dataset)
+summary(regressor)
+
+"
+Now we want to remove those independent variables whose p values are greater than significance level
+lower the p value more significant is our independent variable and we will check p values of
+all the columns by calling summary function and then remove the independent variable with highest
+p value and then fit the model with remaining variables and then and proceed with same steps 
+until we get all p values less than significance level
+"
+regressor= lm(formula= Profit ~ R.D.Spend + Administration + Marketing.Spend ,
+              data=dataset)
+summary(regressor)
+
+regressor= lm(formula= Profit ~ R.D.Spend + Marketing.Spend ,
+              data=dataset)
+summary(regressor)
+
+regressor= lm(formula= Profit ~ R.D.Spend ,
+              data=dataset)
+summary(regressor)
+
+"
+Now we have got our optimal table which decides the value of our profit by backward elimination 
+"
