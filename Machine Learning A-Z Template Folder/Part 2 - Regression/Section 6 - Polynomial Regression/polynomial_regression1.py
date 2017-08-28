@@ -62,14 +62,69 @@ lin_reg.fit(X,y)
 '''
 we will modify our matrix of features and it will add new independent variables that will be 
 just the powers of the first independent variables
+polyreg will be used to perform that task
+it will also add a column of ones at the start of the transformed matrix
 '''
 from sklearn.preprocessing import PolynomialFeatures
-poly_reg
+poly_reg=PolynomialFeatures(degree=4)
+X_poly=poly_reg.fit_transform(X)
+lin_reg2=LinearRegression()
+lin_reg2.fit(X_poly,y)
 
+#Visualizing the linear Regression results
+'''
+we will plot a graph that will show the observation points and we will also plot
+linear regresion line
+we will plot a scatter graph that shows salaries in red colour and regression line in 
+blue colour.
+'''
+plt.scatter(X,y,color='red')
+plt.plot(X,lin_reg.predict(X),color='Blue')
+plt.title('Truth or Bluff(Linear Regression)')
+plt.xlabel('Position Level')
+plt.ylabel('Salary')
+plt.show()
 
+'''
+Linear regression does not gives a great prediction as we are quite far from the truth
+by linear prediction thats why we want a better prediction model - polynomial prediction
+'''
+#Visualizing the polynomial Regression results
+'''
+we will plot a graph that will show the observation points and we will also plot
+polynomial regresion line
+we will plot a scatter graph that shows salaries in red colour and regression line in 
+blue colour.
+'''
 
+plt.scatter(X,y,color='red')
+plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)),color='Blue')
+plt.title('Truth or Bluff(polynomial Regression)')
+plt.xlabel('Position Level')
+plt.ylabel('Salary')
+plt.show()
 
+'''
+polynomial regression gives a great prediction as we are quite close to the truth
+by polynomial prediction.WE can even increase the accuracy by increasing the degree of our
+polynomial model
+'''
 
+'''
+for more advanced plot we are using X_grid to plot all the imaginary salaries of our plot
+arange provides us the range of our entries on which we have to compute our predictions
+'''
+X_grid=np.arange(min(X),max(X),0.1)
+X_grid=X_grid.reshape(len(X_grid),1)
+plt.scatter(X,y,color='red')
+plt.plot(X_grid,lin_reg2.predict(poly_reg.fit_transform(X_grid)),color='Blue')
+plt.title('Truth or Bluff(polynomial Regression)')
+plt.xlabel('Position Level')
+plt.ylabel('Salary')
+plt.show()
 
+#Predicting the salary using linear regression of 6.5 level
+lin_reg.predict(6.5)
 
-
+#Predicting the salary using polynomial regression of 6.5 level
+lin_reg2.predict(poly_reg.fit_transform(6.5))
