@@ -58,4 +58,45 @@ linear regresion line
 we will plot a scatter graph that shows salaries in red colour and regression line in 
 blue colour.
 "
+"
+Now we have to plot the datapoints and linear regression line
+geom_point is used to scatter plot all our obervations points of training set
+aes-aesthetic function specifies the x and y variables of the plot
+geom_line is used to plot the regression line
+xlab and ylab for labelling x and y coordinates
+"
 library(ggplot2)
+ggplot() +
+  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+             colour= 'red' ) +
+  geom_line(aes(x = dataset$Level, y = predict(lin_reg, newdata = dataset)),
+            colour='blue') +
+  ggtitle('Truth or Bluff(Linear Regression)') +
+  xlab('Years of experience') +     
+  ylab('salary')
+
+"
+Linear regression does not gives a great prediction as we are quite far from the truth
+by linear prediction thats why we want a better prediction model - polynomial prediction
+"
+#Visualizing the polynomial Regression results
+"
+we will plot a graph that will show the observation points and we will also plot
+polynomial regresion line
+we will plot a scatter graph that shows salaries in red colour and regression line in 
+blue colour.
+"
+ggplot() +
+  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+             colour= 'red' ) +
+  geom_line(aes(x = dataset$Level, y = predict(poly_reg, newdata = dataset)),
+            colour='blue') +
+  ggtitle('Truth or Bluff(Polynomial Regression)') +
+  xlab('Years of experience') +     
+  ylab('salary')
+
+"
+polynomial regression gives a great prediction as we are quite close to the truth
+by polynomial prediction.WE can even increase the accuracy by increasing the degree of our
+polynomial model
+"
