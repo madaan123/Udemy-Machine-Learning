@@ -53,3 +53,23 @@ y_train = sc_y.fit_transform(y_train)
 '''
 We are going to make both linear as well as polynomial regression and compare  both of them
 '''
+#Fitting linear regression model to the dataset
+from sklearn.linear_model import LinearRegression
+lin_reg = LinearRegression()
+lin_reg.fit(X,y)
+
+#Fitting Polynomial regression model to the dataset
+'''
+we will modify our matrix of features and it will add new independent variables that will be 
+just the powers of the first independent variables
+'''
+from sklearn.preprocessing import PolynomialFeatures
+poly_reg
+
+
+
+
+
+
+
+
