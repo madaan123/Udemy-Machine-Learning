@@ -44,9 +44,9 @@ powers of the first independent variables poly_reg will be used to perform that 
 "
 
 #Fitting polynomial regression model to the dataset
-dataset$level2= dataset$Level^2    # create a new level that is square of level 1
-dataset$level3= dataset$Level^3
-dataset$level4= dataset$Level^4
+dataset$Level2= dataset$Level^2    # create a new level that is square of level 1
+dataset$Level3= dataset$Level^3
+dataset$Level4= dataset$Level^4
 poly_reg = lm(Salary ~ . ,
               data = dataset)
 summary(poly_reg)
@@ -100,3 +100,13 @@ polynomial regression gives a great prediction as we are quite close to the trut
 by polynomial prediction.WE can even increase the accuracy by increasing the degree of our
 polynomial model
 "
+
+#Predicting a new value by linear regression
+y_pred= predict(lin_reg, data.frame(Level=6.5))
+
+#Predicting a new value by polynomial regression
+y_pred= predict(poly_reg, data.frame(Level=6.5,
+                                    Level2=6.5^2,
+                                    Level3=6.5^3,
+                                    Level4=6.5^4))
+
