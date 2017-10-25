@@ -50,14 +50,21 @@ sc_y = StandardScaler()
 y_train = sc_y.fit_transform(y_train)
 """
 
-#Fitting Regression model to the dataset
+#Fitting Decision Tree Regression model to the dataset
+'''
+Now we are using Decision tree regression model to predict our machine learning results
+we have a criterion that is mse that is mean square error 
+we take sum of square of the difference b/w prediction and the real result to find the error
+'''
+from sklearn.tree import DecisionTreeRegressor
+regressor = DecisionTreeRegressor(random_state = 0)
+regressor.fit(X , y)
 
-
-#Predicting the salary using regression of 6.5 level
+#Predicting the salary using Decision Tree regression of 6.5 level
 y_pred = regressor.predict((6.5))
 
 
-#Visualizing the Regression results
+#Visualizing the Decision Tree Regression results
 '''
 we will plot a graph that will show the observation points and we will also plot
 polynomial regresion line
@@ -77,7 +84,7 @@ for more advanced plot we are using X_grid to plot all the imaginary salaries of
 arange provides us the range of our entries on which we have to compute our predictions
 for higher resolution and smoother curve
 '''
-X_grid=np.arange(min(X),max(X),0.1)
+X_grid=np.arange(min(X),max(X),0.01)
 X_grid=X_grid.reshape(len(X_grid),1)
 plt.scatter(X,y,color='red')
 plt.plot(X_grid,regressor.predict((X_grid)),color='Blue')
