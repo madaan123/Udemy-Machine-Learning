@@ -63,6 +63,7 @@ regressor.fit(X,y)
 # the value 6.5 is not scaled according to our previous scaling that is done on X
 # we will have to use the scaler and transform the value 6.5 for predicting the results on it
 # Transform method expects a array as its input so we transform 6.5 into array by using np.aaray Fx:- 
+# The predicted values of the model have to be inverted as we have scaled it earlier 
 y_pred = sc_y.inverse_transform(regressor.predict(sc_X.transform(np.array([[6.5]]))))
 
 
